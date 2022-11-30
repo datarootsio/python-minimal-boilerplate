@@ -20,11 +20,5 @@ jobs:
           pip install poetry==${{ env.POETRY_VERSION }} 
           poetry config virtualenvs.create false
           poetry install --no-interaction --no-ansi
-      - name: run black
-        run: black . --check
-      - name: run isort
-        run: isort . --check-only
-      - name: run flake8
-        run: flake8 .
-      - name: run unit tests
-        run: pytest -vv
+      - name: run precommit hooks
+        run: pre-commit run --all-files
