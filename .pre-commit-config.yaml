@@ -17,11 +17,11 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-      - id: flake8
-        name: flake8
+      - id: ruff
+        name: ruff
         stages: [commit]
         types: [python]
-        entry: poetry run flake8 .
+        entry: poetry run ruff .
         language: system
         pass_filenames: false
         always_run: true

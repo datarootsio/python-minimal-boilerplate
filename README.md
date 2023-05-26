@@ -6,7 +6,7 @@ This boilerplate project contains the following setup ready for you to go:
     * `poetry`
 * code validation
     * `black`
-    * `flake8`
+    * `ruff`
     * `pytest`
 * pre-commit hooks
 
