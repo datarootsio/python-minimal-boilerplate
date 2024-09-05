@@ -19,6 +19,7 @@ managed = true
 dev-dependencies = [
     "pre-commit>=3.7.1",
     "pytest>=8.2.2",
+    "mypy>=1.11.2",
 ]
 
 [tool.hatch.metadata]

@@ -1,28 +1,24 @@
-name: CI incl. formatting & linting
+name: Multiple Python Versions CI boilerplate
 
 on:
   push:
-    branches:
-      - main
-      - rye
   pull_request:
-    branches:
-      - main
-      - rye
-  schedule:
-    - cron: 0 0 * * 1
 
 jobs:
   linter_and_test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
-      max-parallel: 10
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.10", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
-      - uses: pre-commit/action@v3.0.1
+      - uses: eifinger/setup-rye@v2
+      - run: rye sync
+      - run: rye fmt
+      - run: rye lint
+      - run: rye test
+      - run: rye mypy src

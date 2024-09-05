@@ -18,6 +18,9 @@ identify==2.5.36
     # via pre-commit
 iniconfig==2.0.0
     # via pytest
+mypy==1.11.2
+mypy-extensions==1.0.0
+    # via mypy
 nodeenv==1.9.1
     # via pre-commit
 packaging==24.1
@@ -30,5 +33,7 @@ pre-commit==3.7.1
 pytest==8.2.2
 pyyaml==6.0.1
     # via pre-commit
+typing-extensions==4.12.2
+    # via mypy
 virtualenv==20.26.3
     # via pre-commit
