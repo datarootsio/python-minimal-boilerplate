@@ -18,24 +18,11 @@ jobs:
     strategy:
       max-parallel: 10
       matrix:
-        python-version: ["3.10"]
+        python-version: ["3.10", "3.11"]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: 'x64'
-      - name: Setup rye
-        uses: eifinger/setup-rye@v2
-      - name: Install original package
-        run: rye sync
-      - name: Run the formatter
-        run: rye fmt -- --diff
-      - name: Run the linter
-        run: rye lint --fix
-      - name: Run the tests
-        run: rye test
-      - name: mypy
-        uses: jpetrucciani/mypy-check@master
-        with:
-          path: 'src'
+      - uses: pre-commit/action@v3.0.1
