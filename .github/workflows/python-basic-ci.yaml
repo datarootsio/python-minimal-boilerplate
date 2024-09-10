@@ -21,4 +21,4 @@ jobs:
       - run: rye fmt
       - run: rye lint
       - run: rye test
-      - run: rye mypy src
+      - run: rye run mypy src
