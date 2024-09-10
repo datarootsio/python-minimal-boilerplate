@@ -1,26 +1,29 @@
-[tool.poetry]
+[project]
 name = "python-minimal-boilerplate"
 version = "0.1.0"
 description = "A Python project containing some minimal best-practices boilerplate"
-authors = ["Arthur Dent <arthur@dent.space>"]
-license = "MIT"
+authors = [
+    { name = "Arthur Dent", email = "arthur@dent.space" }
+]
+dependencies = []
 readme = "README.md"
-packages = [{include = "python_minimal_boilerplate"}]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-
-
-[tool.poetry.group.dev.dependencies]
-black = "^23.3.0"
-isort = "^5.10.1"
-pytest = "^7.3.1"
-pre-commit = "^3.3.2"
-ruff = "^0.0.270"
+requires-python = ">= 3.10"
+license = "MIT"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.isort]
-profile = "black"
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pre-commit>=3.7.1",
+    "pytest>=8.2.2",
+    "mypy>=1.11.2",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/python_minimal_boilerplate"]

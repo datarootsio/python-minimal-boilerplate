@@ -1,37 +1,40 @@
+
 repos:
-  - repo: local
+-   repo: local
     hooks:
-      - id: isort
-        name: isort
-        stages: [commit]
-        types: [python]
-        entry: poetry run isort .
-        language: system
-        pass_filenames: false
-        always_run: true
-      - id: black
-        name: black
-        stages: [commit]
-        types: [python]
-        entry: poetry run black .
-        language: system
-        pass_filenames: false
-        always_run: true
-      - id: ruff
-        name: ruff
-        stages: [commit]
-        types: [python]
-        entry: poetry run ruff .
-        language: system
-        pass_filenames: false
-        always_run: true
-        fail_fast: true
-      - id: pytest
-        name: pytest
-        stages: [commit]
-        types: [python]
-        entry: poetry run pytest
-        language: system
-        pass_filenames: false
-        always_run: true
-        fail_fast: true
+    - id: rye-lint
+      name: rye-lint
+      description: "Lint Python via 'rye lint'"
+      entry: rye lint --fix
+      language: system
+      types_or: [python, pyi]
+      args: []
+      require_serial: true
+      additional_dependencies: []
+      minimum_pre_commit_version: "2.9.2"
+    - id: rye-format
+      name: rye-format
+      description: "Format Python via 'rye fmt'"
+      entry: rye fmt
+      language: system
+      types_or: [python, pyi]
+      args: []
+      require_serial: true
+      additional_dependencies: []
+      minimum_pre_commit_version: "2.9.2"
+    - id: rye-test
+      name: rye-test
+      description: "Test Python via 'rye test'"
+      entry: rye test
+      language: system
+      types_or: [python, pyi]
+      args: []
+      pass_filenames: false
+      require_serial: true
+      additional_dependencies: []
+      minimum_pre_commit_version: "2.9.2"
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.10.1'
+    hooks:
+      - id: mypy
+        files: src
